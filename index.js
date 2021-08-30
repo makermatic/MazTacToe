@@ -1,7 +1,7 @@
 var express = require('express');
 
 var app = express();
-var server = app.listen('https://maz-tac-toe.herokuapp.com/');
+var server = app.listen('https://maz-tac-toe.herokuapp.com/', { secure: true });
 
 app.use(express.static('public'));
 
