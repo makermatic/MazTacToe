@@ -3,8 +3,6 @@ var express = require('express');
 var app = express();
 var server = app.listen(process.env.PORT || "https://localhost:80");
 
-var cors = require('cors')
-
 app.use(express.static('public'));
 
 console.log('Server is running');
@@ -12,8 +10,6 @@ console.log('Server is running');
 var socket = require('socket.io');
 
 var io = socket(server);
-
-cors.add.res.setHeader("Access-Control-Allow-Origin", "*");
 
 io.sockets.on('connection', newConnection);
 
