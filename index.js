@@ -1,26 +1,25 @@
-var express = require('express');
+const http = require('http')
+const express = require('express')
 
-var app = express();
-var server = app.listen(process.env.PORT || "https://localhost:3000");
+const app = express()
+app.use(express.static('public'))
 
-app.use(express.static('public'));
+app.set('port', '3000')
 
-console.log('Server is running');
+const server = http.createServer(app)
+server.on('listening', () => {
+ console.log('Listening on port 3000')
+})
 
-var socket = require('socket.io');
+// Web sockets
+const io = require('socket.io')(server)
 
-var io = socket(server);
+io.sockets.on('connection', (socket) => {
+	console.log('Someone joined: ' + socket.id)
 
-io.sockets.on('connection', newConnection);
+	socket.on('mouse', (data) => socket.broadcast.emit('mouse', data))
 
-function newConnection(socket) {
-    console.log('new connection: ' + socket.id);
+	socket.on('disconnect', () => console.log('Some douche left'))
+})
 
-    socket.on('mouse', mouseMsg);
-
-    function mouseMsg(data) {
-        socket.broadcast.emit('mouse', data);
-        console.log('Server data: ', data);
-
-    }
-}
+server.listen('3000')
