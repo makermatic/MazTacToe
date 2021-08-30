@@ -12,7 +12,11 @@ app.use(express.static('public'));
 
 console.log('Server is running on port ' + port);
 
-var socket = require('socket.io');
+var socket = require('socket.io')(server, {
+    cors: {
+        origin: '*',
+    }
+});
 
 var io = socket(server);
 
