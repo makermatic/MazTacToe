@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var server = app.listen(process.env.PORT || "https://localhost:80");
 
-var cors = require('cors')())
+var cors = require('cors')
 
 app.use(express.static('public'));
 
