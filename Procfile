@@ -1,1 +1,1 @@
-web: node index.js
+web: PORT=3000 node ./index.js
