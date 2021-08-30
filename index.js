@@ -1,22 +1,15 @@
-const express = require('express');
+var express = require('express');
 
-const app = express();
-
-const port = 3000;
-
-var server = app.listen(process.env.PORT || port);
+var app = express();
+var server = app.listen(process.env.PORT || "https://localhost:80");
 
 app.use(require('cors')())
 
 app.use(express.static('public'));
 
-console.log('Server is running on port ' + port);
+console.log('Server is running');
 
-var socket = require('socket.io')(server, {
-    cors: {
-        origin: '*',
-    }
-});
+var socket = require('socket.io');
 
 var io = socket(server);
 
