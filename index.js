@@ -1,7 +1,7 @@
 var express = require('express');
 
 var app = express();
-var server = app.listen("https://localhost:80");
+var server = app.listen(process.env.PORT || "https://localhost:80");
 
 app.use(require('cors')())
 
